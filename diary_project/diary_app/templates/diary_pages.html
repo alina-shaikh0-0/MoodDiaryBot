@@ -1,0 +1,21 @@
+<!-- diary_app/templates/diary_pages.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diary Pages List</title>
+</head>
+<body>
+    <a href="{% url 'diary_app:diary_page_create' %}" class="btn btn-primary mb-3">Создать новую запись</a>
+    <h1>List of Diary Pages</h1>
+    <ul>
+        {% for page in pages %}
+            <li>
+                {{ page }}
+                <a href="{% url 'diary_app:diary_page_edit' page.pk %}">Edit</a>
+                <a href="{% url 'diary_app:diary_page_delete' page.pk %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

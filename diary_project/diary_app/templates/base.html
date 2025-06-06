@@ -1,0 +1,21 @@
+<!-- diary_app/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>My Diary App</h1>
+    </header>
+    <nav>
+        <a href="/mood_entries/">Mood Entries</a>
+        <a href="/events/">Events</a>
+        <a href="/diary_pages/">Diary Pages</a>
+    </nav>
+    <section>
+        {% block content %}{% endblock %}
+    </section>
+</body>
+</html>

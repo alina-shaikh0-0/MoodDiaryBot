@@ -1,0 +1,22 @@
+<!-- diary_app/templates/profile.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Ваш профиль</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<p><a href="{% url 'delete_account' %}">Delete account</a></p>
+{% endblock %}
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Welcome to your Profile!</h1>
+</body>
+</html> -->

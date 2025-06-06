@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>List of Mood Entries</h1>
+<a href="{% url 'diary_app:mood_entry_create' %}">Create new Entry</a><br>
+<!-- Фильтр по эмоциям -->
+<form method="get" action="{% url 'diary_app:mood_entry_list' %}">
+    {{ filter_form.as_p }}
+    <button type="submit" class="btn btn-info">Apply Filter</button>
+</form>
+<!-- """<form method="get" action="{% url 'diary_app:mood_entry_list' %}">
+    <select name="emotion_filter">
+        <option value="">All moods</option>
+        {% for choice in mood_choices %}
+            <option value="{{ choice.0 }}" {% if choice.0 == request.GET.emotion_filter %}selected{% endif %}>{{ choice.1 }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-info">Filter</button>
+</form>""" -->
+<ul>
+    {% for entry in entries %}
+        <li>
+            {{ entry }} — Emotion: {{ entry.get_emotion_display }}
+            <a href="{% url 'diary_app:mood_entry_edit' entry.pk %}">Edit</a>
+            <a href="{% url 'diary_app:mood_entry_delete' entry.pk %}">Delete</a>
+        </li>
+    {% empty %}
+        <li>No mood entries for selected emotion</li>
+    {% endfor %}
+</ul>
+{% endblock %}
